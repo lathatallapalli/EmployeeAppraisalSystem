@@ -1,0 +1,54 @@
+﻿@model CoreBusiness.Employee
+@{
+    <h3>EmployeeDashboard</h3>
+}
+@{
+    var empId = ViewData["empId"];
+    var mgrId = ViewData["mgrId"];
+}
+
+<a style="margin-top:24px" class="btn btn-secondary" asp-controller="Appraisal" asp-action="SelfAppraisalForm" asp-route-empId="@Model.EmployeeId" asp-route-mgrId="@Model.ManagerId">Active Self-Appraisals</a>
+<br/>
+<a style="margin-top:24px" class="btn btn-secondary" asp-controller="Appraisal" asp-action="EmployeeAppraisalReview" asp-route-empId="@Model.EmployeeId" asp-route-mgrId="@Model.ManagerId">Manager-Appraisal Reviews</a>
+
+
+<div id="notification-container">
+    <!-- Notifications will be dynamically added here -->
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signalr/5.0.0/signalr.min.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/notificationHub")
+        .build();
+
+    connection.start().then(() => {
+        console.log("SignalR connection established");
+    }).catch(err => console.error(err.toString()));
+
+    connection.on("ReceiveNotification", (message, formUrl) => {
+        // Create a new notification element
+        const notificationElement = document.createElement("div");
+        notificationElement.classList.add("notification");
+
+        // Create text content for the notification
+        const messageContent = document.createElement("span");
+        messageContent.textContent = message;
+
+        // Create a button to view the form
+        const viewButton = document.createElement("button");
+        viewButton.textContent = "View Form";
+        viewButton.addEventListener("click", () => {
+            // Redirect to the form URL when the button is clicked
+            window.location.href = formUrl;
+        });
+
+        // Append message and view button to the notification element
+        notificationElement.appendChild(messageContent);
+        notificationElement.appendChild(viewButton);
+
+        // Add the notification element to the container
+        const container = document.getElementById("notification-container");
+        container.appendChild(notificationElement);
+    });
+</script>

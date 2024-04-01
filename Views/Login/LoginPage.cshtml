@@ -1,0 +1,74 @@
+﻿@model CoreBusiness.Employee
+
+@{
+    var message = ViewData["Message"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        alert{
+            color:red;
+        }
+
+        .login-container {
+            max-width: 300px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top:24px;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="margin:24px">Login</h2>
+    <div class="login-container">
+        <span class="text-danger">@message</span>
+
+        <form style="display:flex; flex-direction:column; justify-content:center" method="post" id="loginForm" asp-controller="login" asp-action="login">
+            <table >
+                <tr><td style="justify-content:start; display:flex;"><label asp-for="@Model.Email">Username:</label></td></tr>
+                <tr><td><input type="text" asp-for="@Model.Email" required /></td></tr>
+                <tr><td><span class="text-danger" asp-validation-for="@Model.Email"></span></td></tr>
+            </table>
+            <table>
+                <tr><td style="justify-content:start; display:flex;"><label asp-for="@Model.Password">Password:</label></td></tr>
+                <tr><td><input type="password" asp-for="@Model.Password" required></td></tr>
+                <tr><td> <span class="text-danger" asp-validation-for="@Model.Password"></span></td></tr>
+            </table>
+            <button style="margin-top:28px;" class="btn btn-success" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

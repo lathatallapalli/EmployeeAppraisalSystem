@@ -1,0 +1,146 @@
+﻿@model SelfAppraisalFormViewModel
+
+
+@section title {
+    <div class="row">
+        <div class="col-7"><h5>Self Appraisal Form</h5></div>
+    </div>
+}
+
+@* @{
+    var empId = ViewData["empId"];
+    var mgrId = ViewData["mgrId"];
+} *@
+@* <form method="post" asp-controller="appraisal" asp-action="appraisalform">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <!-- Left half content -->
+                <div class="left-content">
+                    @foreach (var competency in ViewBag.rolecompetencies)
+                    {
+                        var _competency = competency as Competency;
+                        <div class="row">
+                            <div class="col">
+                                <div>@_competency.CompetencyName</div>
+                            </div>
+                            <div class="col-6">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>------Please Select Rating------</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    }
+                    Left
+                    @empId
+                    @mgrId
+
+                </div>
+            </div>
+            <div class="col">
+                <!-- Right half content -->
+                <div class="right-content">
+                    @foreach (var objective in ViewBag.objectivedetails)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <div>@objective</div>
+                            </div>
+                            <div class="col-6">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>------Please Select Rating------</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>                     
+                    }
+                    Right
+                    @empId
+                    @mgrId
+                    @*                 @await Html.PartialAsync("_RightPartialView") *@
+@*                 </div>
+            </div>
+        </div>
+    </div>
+    <button id="btn" class="btn btn-success" type="submit">Submit</button>
+</form> *@
+
+
+
+<form method="post" asp-controller="appraisal" asp-action="selfappraisalform" >
+    <input type="hidden" asp-for="EmpId" />
+    <input type="hidden" asp-for="MgrId" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <!-- Left half content -->
+                <div class="left-content">
+                    @for (int i = 0; i < Model.CompetenciesSelfAppraised.Count; i++)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <div>@Model.CompetenciesSelfAppraised[i].Competency</div>
+                                <input type="hidden" asp-for="@Model.CompetenciesSelfAppraised[i].Competency" />
+                            </div>
+                            <div class="col-6">
+                                <select class="form-select" aria-label="Default select example" asp-for="@Model.CompetenciesSelfAppraised[i].Rating">
+                                    <option selected>- Please Select Rating -</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" asp-for="@Model.CompetenciesSelfAppraised[i].Feedback" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col">
+                <!-- Right half content -->
+                <div class="right-content">
+                    @for (int i = 0; i < Model.ObjectivesSelfAppraised.Count; i++)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <div>@Model.ObjectivesSelfAppraised[i].Objective</div>
+                                <input type="hidden" asp-for="@Model.ObjectivesSelfAppraised[i].Objective" />
+                            </div>
+                            <div class="col-6">
+                                <select class="form-select" aria-label="Default select example" asp-for="@Model.ObjectivesSelfAppraised[i].Rating">
+                                    <option selected>- Please Select Rating -</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" asp-for="@Model.ObjectivesSelfAppraised[i].Feedback" />
+                            </div>
+                        </div>
+                    }
+               </div>
+           </div>
+        </div>
+    </div>
+    <button id="btn" class="btn btn-success" type="submit">Submit</button>
+</form>
+
+
+<!-- Bootstrap JS (optional if needed for your project) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

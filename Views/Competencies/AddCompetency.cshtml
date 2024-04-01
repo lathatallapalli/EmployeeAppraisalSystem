@@ -1,0 +1,59 @@
+﻿@model CoreBusiness.Competency
+
+@section title
+{
+
+    <h3>Add Competency</h3>
+    <br />
+    <br />
+}
+
+<form method="post" asp-controller="competencies" asp-action="addcompetency">
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="CompetencyName" class="col-form-label">Competency</label>
+        </div>
+        <div class="col-6">
+            <input type="text" asp-for="CompetencyName" class="form-control" />
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <span></span>
+            </div>
+            <div class="col-6">
+                <span class="text-danger" asp-validation-for="CompetencyName"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="competencyType" class="col-form-label">Type</label>
+        </div>
+        <div class="col-6">
+            <select asp-for="competencyType" class="form-select" aria-label="Default select example">
+                <option selected>------Please Select------</option>
+                <option value="1">Technical</option>
+                <option value="2">Behavioral</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <span></span>
+        </div>
+        <div class="col-6">
+            <span class="text-danger" asp-validation-for="competencyType"></span>
+        </div>
+    </div>
+
+
+    
+    <br />
+    <br />
+    <br />
+
+    <div>
+        <input type="submit" class="btn btn-primary" value="Add"/>
+        <a class="btn btn-secondary" asp-controller="competencies" asp-action="competencylist">Cancel</a>
+    </div>
+</form>

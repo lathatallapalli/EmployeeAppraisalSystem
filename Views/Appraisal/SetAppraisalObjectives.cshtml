@@ -1,0 +1,185 @@
+﻿@model CoreBusiness.Employee
+@{
+    var mgrId = ViewBag.mgrId;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Style for text box wrapper */
+        .objective-textbox-wrapper {
+            position: relative;
+            margin-bottom: 12px; /* Bottom margin between textboxes */
+            margin-right: 12px; /* margin between span and delete button*/
+        }
+
+        /* Style for text box */
+        .objective-textbox {
+            width: calc(100% - 58px); /* Adjusted width for delete button */
+            min-height: 48px; /* Minimum height */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none; /* Disable resizing */
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* Style for delete button */
+        .delete-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 36px;
+            height: 36px;
+            padding: 0; /* Remove padding */
+            cursor: pointer;
+            background-color: #007bff; /* Blue background */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 5px;
+            display: flex; /* Center icon horizontally */
+            justify-content: center; /* Center icon horizontally */
+            align-items: center; /* Center icon vertically */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        /* Style for delete icon */
+        .delete-icon {
+            font-size: 16px; /* Icon size */
+            color: white;
+        }
+
+        /* Hover state for delete button */
+        .delete-btn:hover {
+            background-color: rgba(6, 99, 196); /* White overlay */
+        }
+
+        /* Pressed state for delete button */
+        .delete-btn:active {
+            background-color: rgba(6, 99, 196); /* Black overlay */
+        }
+
+        /* Style for set and cancel buttons */
+        .set-cancel-buttons {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+            .set-cancel-buttons button {
+                margin-left: 5px;
+            }
+    </style>
+</head>
+<body>
+    <h3>@Model.EmployeeName</h3>
+    <p>@Model.EmployeeDesignation</p>
+    </ hr>
+    <h6>Set Appraisal Objectives</h6>
+    <form method="post" asp-controller="appraisal" asp-action="setappraisalobjectives" asp-route-empId="@Model.EmployeeId", asp-route-mgrId="@mgrId">
+        <div class="container mt-4">
+            <div id="objectives-container">
+                <input type="hidden" id="managerId" name="managerId" value="@mgrId">
+                <div class="buttons-container">
+                    <!-- Add Objective button -->
+                    <button id="add-objectives-btn" class="btn btn-primary mb-2">Add Objective</button>
+                    <!-- Set and Cancel buttons -->
+                    <div class="set-cancel-buttons">
+                        <button id="set-objectives-btn" class="btn btn-success" type="submit">Submit</button>
+                        <button id="cancel-objectives-btn" class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+        <!-- Hidden input field to store objectives -->
+        <input type="hidden" id="objectives-input" name="objectives" value="">
+
+        <script>
+
+            document.forms[0].onsubmit =(e)=>{
+                e.preventDefault();
+            }
+            // Function to add text box above the button when "Add Objective" button is clicked
+            function addObjective() {
+                // Create wrapper div for textbox and delete button
+                var wrapperDiv = document.createElement("div");
+                wrapperDiv.className = "objective-textbox-wrapper";
+
+                // Create text area element
+                var textarea = document.createElement("textarea");
+                textarea.className = "form-control objective-textbox mb-2"; // Bootstrap form control class with custom objective-textbox class
+                textarea.placeholder = "Enter objective...";
+                textarea.name = "objects"
+                textarea.addEventListener("input", function (e) {
+                    this.style.height = "auto";
+                    this.style.height = this.scrollHeight + "px";
+                    updateObjectives();
+                });
+
+                // Create delete button
+                var deleteBtn = document.createElement("button");
+                deleteBtn.className = "btn delete-btn";
+                deleteBtn.innerHTML = '<i class="fas fa-trash-alt delete-icon"></i>'; // Trash can icon for delete
+
+                // Add click event listener to delete button
+                deleteBtn.addEventListener("click", function () {
+                    wrapperDiv.remove(); // Remove the wrapper div (and the associated objective)
+                });
+
+                // Append elements to wrapper div
+                wrapperDiv.appendChild(textarea);
+                wrapperDiv.appendChild(deleteBtn);
+
+                // Append wrapper div before the button
+                var container = document.getElementById("objectives-container");
+                container.insertBefore(wrapperDiv, container.lastElementChild);
+
+                // Update hidden input with objectives data
+                //updateObjectives();
+            }
+
+            // Function to update hidden input field with objectives data
+            // function updateObjectives() {
+            //     var objectives = [];
+            //     var textareas = document.querySelectorAll('.objective-textbox');
+            //     textareas.forEach(function (textarea) {
+            //         objectives.push(textarea.value.trim());
+            //     });
+            //     document.getElementById("objectives-input").value = JSON.stringify(objectives);
+            // }
+
+            // Add event listener to "Add Objective" button
+            document.getElementById("add-objectives-btn").addEventListener("click", addObjective);
+
+            // Add event listener to "Set" button
+            document.getElementById("set-objectives-btn").addEventListener("click", function () {
+                // Retrieve objectives data from hidden input
+               // var objectivesData = JSON.parse(document.getElementById("objectives-input").value);
+                // Perform action with objectivesData
+               // console.log(objectivesData);
+
+                document.forms[0].submit();
+                // For demo purposes, let's just alert the objectives
+              //  alert("Objectives set:\n" + objectivesData.join("\n"));
+
+            //window.location.href = `appraisal/ReceivedDatFromView/${objectivesData}`
+            });
+
+            // Add event listener to "Cancel" button
+            document.getElementById("cancel-objectives-btn").addEventListener("click", function () {
+                // Clear all objectives
+                document.getElementById("objectives-container").innerHTML = "";
+                // Clear hidden input value
+                document.getElementById("objectives-input").value = "";
+            });
+        </script>
+
+</body>
+</html>

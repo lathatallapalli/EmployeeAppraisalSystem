@@ -1,0 +1,52 @@
+﻿@model List<CoreBusiness.Employee>
+@section title
+{
+    <br/>
+    <h3>Employee Management</h3>
+    <br/>
+    <br/>
+}
+
+<partial name="_EmployeeList" model="@Model" />
+
+@* <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>EmpID</th>
+            <th>EmpName</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Designation</th>
+            <th>MgrId</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td class="align-middle">@employee.EmployeeId</td>
+                <td class="align-middle">@employee.EmployeeName</td>
+                <td class="align-middle">@employee.Mobile</td>
+                <td class="align-middle">@employee.Email</td>
+                <td class="align-middle">@employee.EmployeeDesignation</td>
+                <td class="align-middle">@employee.ManagerId</td>
+                <td>
+                    <a class="btn btn-link" asp-controller="employee" asp-action="editemployee" asp-route-empid=@employee.EmployeeId>Edit</a>
+                    <a class="btn btn-link" asp-controller="employee" asp-action="deleteemployee" asp-route-empid=@employee.EmployeeId onclick="return confirmDelete()">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+<br/>
+<a class="btn btn-primary" position="align-left" asp-controller="employee" asp-action="addemployee" >Add Employee</a>
+
+@section Scripts{
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this employee?");
+    }
+</script>
+} *@

@@ -1,0 +1,72 @@
+﻿@model ManagerAppraisalFormViewModel
+
+@section title
+{
+    <div class="row">
+        <div class="col-7">
+            <h5>Appraisal</h5>
+        </div>
+    </div>
+}
+
+<form method="post" asp-controller="appraisal" asp-action="employeeappraisalreview">
+    <input type="hidden" asp-for="EmpId" />
+    <input type="hidden" asp-for="MgrId" />
+    <h6 style="padding:12px">Competencies</h6>
+    <table>
+        <thead>
+            <tr>
+                <th style="padding:24px">Competency</th>
+                <th style="padding:24px">Self-Rating</th>
+                <th style="padding:24px">Comment</th>
+                <th style="padding:24px">Manager-Rating</th>
+                <th style="padding:24px">FeedBack</th>
+            </tr>        
+        </thead>
+        <tbody>
+            @for (int i = 0; i < @Model.CompetenciesManagerAppraised.Count; i++)
+            {
+                <tr>
+                    <td style="padding:24px">@Model.CompetenciesManagerAppraised[i].Competency<input type="hidden" asp-for="@Model.CompetenciesManagerAppraised[i].Competency" /></td>
+                    <td style="padding:24px">@Model.CompetenciesManagerAppraised[i].EmployeeRating<input type="hidden" asp-for="@Model.CompetenciesManagerAppraised[i].EmployeeRating" /></td>
+                    <td style="padding:24px">@Model.CompetenciesManagerAppraised[i].EmployeeFeedback<input type="hidden" asp-for="@Model.CompetenciesManagerAppraised[i].EmployeeFeedback" /></td>
+                    <td style="padding:24px">@Model.CompetenciesManagerAppraised[i].ManagerRating<input type="hidden" asp-for="@Model.CompetenciesManagerAppraised[i].ManagerRating" /></td>
+                    <td style="padding:24px">@Model.CompetenciesManagerAppraised[i].ManagerFeedback<input type="hidden" asp-for="@Model.CompetenciesManagerAppraised[i].ManagerFeedback" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <h6 style="padding:12px">Objectives</h6>
+    <table>
+        <thead>
+            <tr>
+                <th style="padding:24px">Objective</th>
+                <th style="padding:24px">Self-Rating</th>
+                <th style="padding:24px">Comment</th>
+                <th style="padding:24px">Manager-Rating</th>
+                <th style="padding:24px">FeedBack</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.ObjectivesManagerAppraised.Count; i++)
+            {
+                <tr>
+                    <td style="padding:24px">@Model.ObjectivesManagerAppraised[i].Objective<input type="hidden" asp-for="@Model.ObjectivesManagerAppraised[i].Objective" /></td>
+                    <td style="padding:24px">@Model.ObjectivesManagerAppraised[i].EmployeeRating<input type="hidden" asp-for="@Model.ObjectivesManagerAppraised[i].EmployeeRating" /></td>
+                    <td style="padding:24px">@Model.ObjectivesManagerAppraised[i].EmployeeFeedback<input type="hidden" asp-for="@Model.ObjectivesManagerAppraised[i].EmployeeFeedback" /></td>
+                    <td style="padding:24px">@Model.ObjectivesManagerAppraised[i].ManagerRating<input type="hidden" asp-for="@Model.ObjectivesManagerAppraised[i].ManagerRating" /></td>
+                    <td style="padding:24px">@Model.ObjectivesManagerAppraised[i].ManagerFeedback<input type="hidden" asp-for="@Model.ObjectivesManagerAppraised[i].ManagerFeedback" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <button style="margin:24px" id="btn" class="btn btn-success" type="submit">Ok</button>
+</form>
+
+
+<!-- Bootstrap JS (optional if needed for your project) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

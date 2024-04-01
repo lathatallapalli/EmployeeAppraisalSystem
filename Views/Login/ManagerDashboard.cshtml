@@ -1,0 +1,10 @@
+﻿@model CoreBusiness.Employee
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <h3>ManagerDashboard</h3>
+}
+
+
+<a style="margin-top:24px" class=" btn btn-secondary" asp-controller="Employee" asp-action="DirectsList" asp-route-mgrId="@Model.EmployeeId">Employee Appraisals</a>

@@ -1,0 +1,44 @@
+﻿@model List<CoreBusiness.Competency>
+
+@section title
+{
+    <br/>
+    <h3>Competencies</h3>
+    <br/>
+    <br/>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Competency</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var competency in Model)
+        {
+            <tr>
+                <td class="align-middle">@competency.CompetencyId</td>
+                <td class="align-middle">@competency.CompetencyName</td>
+                <td class="align-middle">@competency.competencyType</td>
+                <td>
+                    <a class="btn btn-link" asp-controller="competencies" asp-action="deletecompetency" asp-route-competencyid=@competency.CompetencyId onclick="return confirmDelete()">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+<br/>
+<a class="btn btn-primary" position="align-left" asp-controller="competencies" asp-action="addcompetency" >Add Competency</a>
+
+@section Scripts{
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this competency?");
+    }
+</script>
+}

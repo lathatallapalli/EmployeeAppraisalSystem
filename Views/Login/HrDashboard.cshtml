@@ -1,0 +1,7 @@
+﻿@model CoreBusiness.Employee
+@{
+    <h3>HRDashboard</h3>
+}
+<a style="margin-top:24px" class="btn btn-secondary" asp-controller="Appraisal" asp-action="StartAppraisalCycle" asp-route-empId="@Model.EmployeeId" asp-route-mgrId="@Model.ManagerId">Start New Appraisal Cycle</a>
+<br/>
+<a style="margin-top:24px" class="btn btn-secondary" asp-controller="Competencies" asp-action="CompetencyList">Manage Competencies</a>
