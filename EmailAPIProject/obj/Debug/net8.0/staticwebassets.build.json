@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "IpuW9Hph7oQbqw206MNFKR7+fV1zIbJd+SH3aJIAYJ4=",
+  "Source": "EmailAPIApplication",
+  "BasePath": "_content/EmailAPIApplication",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
