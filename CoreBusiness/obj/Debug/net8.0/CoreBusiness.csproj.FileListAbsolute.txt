@@ -1,0 +1,11 @@
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\bin\Debug\net8.0\CoreBusiness.deps.json
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\bin\Debug\net8.0\CoreBusiness.dll
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\bin\Debug\net8.0\CoreBusiness.pdb
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\CoreBusiness.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\CoreBusiness.AssemblyInfoInputs.cache
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\CoreBusiness.AssemblyInfo.cs
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\CoreBusiness.csproj.CoreCompileInputs.cache
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\CoreBusiness.dll
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\refint\CoreBusiness.dll
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\CoreBusiness.pdb
+C:\Users\saisantosha.tallapal\Desktop\.net training\CoreBusiness\obj\Debug\net8.0\ref\CoreBusiness.dll
